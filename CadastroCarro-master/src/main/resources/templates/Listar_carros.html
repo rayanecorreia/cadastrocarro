@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="layout">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <style>
+    .container-fluid {
+      background-color: pink;
+    }
+    .navbar-brand{
+        background-color: white;
+    }
+    .btn{
+      background-color: seashell;
+    }
+    .form-control{
+      background-color: aliceblue;
+    }
+  </style>
+  <title>Tabela</title>
+</head>
+
+<body class="bg bg-secondary">
+  <div class="container-fluid">
+    <h1 style="text-align: center">Carros Cadastrados</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" th:href="@{'/'}">IFAL - Rio Largo</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{'/formulario'}">Cadastrar</a>
+          </li>
+        
+        </ul>
+      
+      </div>
+     
+    </nav>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Modelo</th>
+          <th scope="col">Placa</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr th:each="carro:${carros}">
+          <th scope="row" th:text="${carro.id}">#</th>
+          <td th:text="${carro.marca}"></td>
+          <td th:text="${carro.modelo}"></td>
+          <td th:text="${carro.placa}"></td>
+          <td><a th:href="@{'/excluir_carro/' + ${carro.id}}"><img src="delete.png" height="16"
+                width="16"></a></td>
+          <td><a th:href="@{'/atualizar_carro/' + ${carro.id}}"><img src="/img/editar.png" height="16"
+                width="16"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+</body>
+</html>
